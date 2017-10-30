@@ -13,11 +13,11 @@ var UserSchema   = new Schema({
     	type: String,
     	//match: [Regex],
     	unique: true,
-    }
-    group: {
-    	type: mongoose.Schema.Type.ObjectId,
-    	ref: 'Group'
-    }
+    },
+    // group: {
+    // 	type: mongoose.Schema.Type.ObjectId,
+    // 	ref: 'Group'
+    // }
 });
 
 module.exports = mongoose.model('User', UserSchema);
