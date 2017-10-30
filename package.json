@@ -1,0 +1,23 @@
+{
+  "name": "wescribeapi",
+  "version": "1.0.0",
+  "description": "API for 475 WeScribe project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erindieringer/WeScribeAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erindieringer/WeScribeAPI/issues"
+  },
+  "homepage": "https://github.com/erindieringer/WeScribeAPI#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "mongoose": "^4.12.5"
+  }
+}
