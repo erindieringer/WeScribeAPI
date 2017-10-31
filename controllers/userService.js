@@ -1,4 +1,4 @@
-var Group = require('../models/groups');
+var userService = require('../models/userServices');
 
 // Routes and methods
 

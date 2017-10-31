@@ -4,20 +4,9 @@ var Schema       = mongoose.Schema;
 var UserSchema   = new Schema({
     first_name: String,
     last_name: String,
-    username: {
-    	type: String,
-    	unique: true
-    },
+    username: String,
     password: String,
-    email: {
-    	type: String,
-    	//match: [Regex],
-    	unique: true,
-    },
-    // group: {
-    // 	type: mongoose.Schema.Type.ObjectId,
-    // 	ref: 'Group'
-    // }
+    email: String
 });
 
 module.exports = mongoose.model('User', UserSchema);

@@ -1,4 +1,4 @@
-var Group = require('../models/groups');
+var Credentials = require('../models/credentials');
 
 // Routes and methods
 
