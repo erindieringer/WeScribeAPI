@@ -13,10 +13,5 @@ require('./controllers/service.js').init(app);
 require('./controllers/usage.js').init(app);
 require('./controllers/userService.js').init(app);
 
-
-
-
-
-
 // Start Server on localhost:5000
 app.listen(5000);

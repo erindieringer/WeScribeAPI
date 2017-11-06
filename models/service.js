@@ -6,7 +6,7 @@ var ServiceSchema   = new Schema({
 	url: String,
 	monthlyCost: Number,
 	accountType: String,
-	paymentDate: Date
+	// paymentDate: Date
 });
 
 module.exports = mongoose.model('Service', ServiceSchema);

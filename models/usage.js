@@ -2,9 +2,9 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var UsageSchema   = new Schema({
-    service: {
+    userService: {
     	type: mongoose.Schema.Types.ObjectId,
-    	ref: 'Service'
+    	ref: 'UserService'
     },
     amount: Number,
     timePeriod: {
