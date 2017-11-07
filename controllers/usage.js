@@ -4,7 +4,7 @@ var Usage = require('../models/usage');
 
 exports.init = function(app) {
 	app.get("/usage/:userService", getUsageByUserService);
-	app.post("usage/:userService/:timePeriod", createUsage);
+	app.post("usage/:start/:end", createUsage);
 	app.delete("usage/:id", deleteUsage);
 	
 }
@@ -18,11 +18,13 @@ getUsageByUserService = function(req, res){
 	});	
 }
 
+//Date time formatting needs fixing
 createUsage = function(req, res){
-	var totalTime = req.timePeriod.start - req.timePeriod.end;
+	var totalTime = Date(req.params.start) - Date(req.params.end);
+	console.log(totalTime)
 	var time = {
-		start: req.timePeriod.start,
-		end: req.timePeriod.end,
+		start: Date(req.params.start),
+		end: Date(req.params.end),
 		totalTime: totalTime,
 	}
 	var usage = new Usage({
