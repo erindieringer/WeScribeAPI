@@ -3,7 +3,11 @@ var Schema       = mongoose.Schema;
 
 var CredentialSchema   = new Schema({
     username: String,
-    password: String
+    password: String,
+    group: {
+    	type: mongoose.Schema.Types.ObjectId,
+    	ref: 'Group'
+    },
 });
 
 module.exports = mongoose.model('Credentials', CredentialSchema);
