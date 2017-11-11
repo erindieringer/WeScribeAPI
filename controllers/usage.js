@@ -3,14 +3,15 @@ var Usage = require('../models/usage');
 // Routes and methods
 
 exports.init = function(app) {
-	app.get("/usage/:userService", getUsageByUserService);
-	app.post("usage/:start/:end", createUsage);
-	app.delete("usage/:id", deleteUsage);
+	app.get("/usage/", getUsageByUserService);
+	app.post("/usage/:start/:end", createUsage);
+	app.delete("/usage/:id", deleteUsage);
+	app.delete("/usage", deleteAllUsage)
 	
 }
 
 getUsageByUserService = function(req, res){
-	Usage.find({userService: req.params.userService}, function(err, service) {
+	Usage.find({}, function(err, service) {
 	    if (err)
 	     	res.send(err);
 	  	else 
@@ -20,22 +21,16 @@ getUsageByUserService = function(req, res){
 
 //Date time formatting needs fixing
 createUsage = function(req, res){
-	var totalTime = Date(req.params.start) - Date(req.params.end);
-	console.log(totalTime)
-	var time = {
-		start: Date(req.params.start),
-		end: Date(req.params.end),
-		totalTime: totalTime,
-	}
+	console.log("DATE:" + Date(req.params.start));
 	var usage = new Usage({
-		// userService: req.userService,
-		timePeriod: time
+		start: req.params.start,
+		end: req.params.end
 	});
-	usage.save(function(err,usage){
+	usage.save(function(err,usage1){
 		if(err) 
 			return next(err);
   		else 
-  			res.json(201, usage);
+  			res.send(usage1);
 	});
 }
 
@@ -44,5 +39,13 @@ deleteUsage = function(req, res){
     if (err)
       res.send(err);
     res.json({ message: 'Service successfully deleted' });
+  }); 
+}
+
+deleteAllUsage = function(req, res){
+	Usage.remove({}, function(err, usage) {
+    	if (err)
+      		res.send(err);
+    	res.json({ message: 'Service successfully deleted' });
   }); 
 }
