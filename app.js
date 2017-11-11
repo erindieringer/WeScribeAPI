@@ -3,7 +3,6 @@ var express = require("express");
 var app = express();
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/WeScribeAPI');
 
 // Call controllers
 require('./controllers/user.js').init(app);
