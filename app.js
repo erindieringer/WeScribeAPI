@@ -2,6 +2,10 @@
 var express = require("express");
 var app = express();
 var mongoose = require('mongoose');
+var cors = require('cors');
+
+// use it before all route definitions
+app.use(cors({origin: 'http://localhost:50000'}));
 
 mongoose.connect('mongodb://localhost/WeScribeAPI');
 

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/erindieringer/WeScribeAPI#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "mongoose": "^4.12.5",
     "nodemon": "^1.12.1"
