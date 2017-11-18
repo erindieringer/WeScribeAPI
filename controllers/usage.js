@@ -4,7 +4,8 @@ var Usage = require('../models/usage');
 
 exports.init = function(app) {
 	app.get("/usage/", getUsageByUserService);
-	app.post("/usage/:start/:end", createUsage);
+	app.post("/usage/:start", createUsage);
+	app.put("/usage/:id/:end", addEnd)
 	app.delete("/usage/:id", deleteUsage);
 	app.delete("/usage", deleteAllUsage)
 	
@@ -21,16 +22,25 @@ getUsageByUserService = function(req, res){
 
 //Date time formatting needs fixing
 createUsage = function(req, res){
-	console.log("DATE:" + Date(req.params.start));
 	var usage = new Usage({
 		start: req.params.start,
-		end: req.params.end
 	});
 	usage.save(function(err,usage1){
 		if(err) 
 			return next(err);
   		else 
   			res.send(usage1);
+	});
+}
+
+addEnd = function(req, res){
+	Usage.findById(req.params.id, function(err, usage){
+		if (err) return handleError(err);
+		usage.set({ end: req.params.end });
+ 		usage.save(function (err, upatedUsage) {
+    		if (err) return handleError(err);
+    		res.send(upatedUsage);
+  		});
 	});
 }
 
