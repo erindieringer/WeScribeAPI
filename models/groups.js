@@ -8,7 +8,11 @@ var GroupSchema   = new Schema({
     	ref: 'User'
     }],
     totalPayment: Number,
-    paymentDate: Date
+    paymentDate: Date,
+    credentials: {
+    	type: mongoose.Schema.Types.ObjectId,
+    	ref: 'Credentials'
+    },
 });
 
 module.exports = mongoose.model('Group', GroupSchema);
