@@ -3,7 +3,7 @@ var User = require('../models/users');
 
 // Routes and methods
 exports.init = function(app) {
-	app.get("/users", getAllUsers)
+	app.get("/users/", getAllUsers)
 	app.get("/users/:id", getUserByID);
 	app.post("/users/:fname/:lname/:username/:password/:email", postUser);
 	app.delete("/users/:id", deleteUser);
@@ -29,6 +29,7 @@ getUserByID = function(req, res){
 }
 
 postUser = function(req, res){
+	console.log(req.params);
 	var user = new User ({
 		first_name: req.params.fname,
 		last_name: req.params.lname,
@@ -38,7 +39,7 @@ postUser = function(req, res){
 	});
 	user.save(function(err, user){
 		if(err) 
-			return next(err);
+			 res.send(err);
   		else 
   			res.json(201, user);
 	});

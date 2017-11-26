@@ -20,7 +20,7 @@ getUsageByUserService = function(req, res){
 	});	
 }
 
-//Date time formatting needs fixing
+//To create a new usage with just a start
 createUsage = function(req, res){
 	var usage = new Usage({
 		start: req.params.start,
@@ -33,6 +33,7 @@ createUsage = function(req, res){
 	});
 }
 
+//Based off of the 
 addEnd = function(req, res){
 	Usage.findById(req.params.id, function(err, usage){
 		if (err) return handleError(err);
