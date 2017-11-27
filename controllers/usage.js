@@ -36,8 +36,10 @@ createUsage = function(req, res){
 //Based off of the 
 addEnd = function(req, res){
 	Usage.findById(req.params.id, function(err, usage){
-		if (err) return handleError(err);
-		usage.set({ end: req.params.end });
+		if (err) 
+			return handleError(err);
+		var hours = Math.abs(usage.start - req.params.end) / 36e5;
+		usage.set({ end: req.params.end, totalTime: hours });
  		usage.save(function (err, upatedUsage) {
     		if (err) return handleError(err);
     		res.send(upatedUsage);
