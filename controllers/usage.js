@@ -3,7 +3,8 @@ var Usage = require('../models/usage');
 // Routes and methods
 
 exports.init = function(app) {
-	app.get("/usage/", getUsageByUserService);
+	app.get("/usage/:user/:month")
+	app.get("/usage/", getUsage);
 	app.post("/usage/:start", createUsage);
 	app.put("/usage/:id/:end", addEnd)
 	app.delete("/usage/:id", deleteUsage);
@@ -11,7 +12,32 @@ exports.init = function(app) {
 	
 }
 
-getUsageByUserService = function(req, res){
+// aggregateUsage = function(req, res){
+// 	// get past month usage for specific user
+// 	Usage.find({
+// 		user: req.params.user,
+// 		start: {
+// 			$gte: Date.today().add(-30).days(),
+//       		$lte: Date.today()
+// 		}
+// 	},
+// 		function(err, usage){
+// 			res.send(calculateHours)
+// 		}
+// 	);
+// }
+
+// // when passed array of usage for a month, calculates hours for that user
+
+// calculateHours = function(usage){
+// 	var totalHours = 0;
+// 	for(var i=0; i< usage.length: i++){
+// 		totalHours += usage[i].totalTime;
+// 	}
+// 	return totalHours
+// }
+
+getUsage = function(req, res){
 	Usage.find({}, function(err, service) {
 	    if (err)
 	     	res.send(err);

@@ -6,6 +6,7 @@ exports.init = function(app) {
 	app.get("/users/", getAllUsers)
 	app.get("/users/:id", getUserByID);
 	app.post("/users/:fname/:lname/:username/:password/:email", postUser);
+	app.put("/users/:id/:group", updateGroup);
 	app.delete("/users/:id", deleteUser);
 
 }
@@ -52,4 +53,17 @@ deleteUser = function(req, res){
       res.send(err);
     res.json({ message: 'User successfully deleted' });
   }); 
+}
+
+updateGroup = function(req, res){
+	User.findById(req.params.id, function(err, user){
+		if (err) 
+			return handleError(err);
+		
+		user.set({ group: req.params.group });
+ 		user.save(function (err, upatedUser) {
+    		if (err) return handleError(err);
+    		res.send(upatedUser);
+  		});
+	});
 }

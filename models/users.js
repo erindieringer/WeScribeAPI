@@ -8,7 +8,11 @@ var UserSchema   = new Schema({
     last_name: String,
     username: String,
   	password: String,
-   	email: String
+   	email: String,
+    group: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group'
+    },
 });
 
 // Code below taken from https://www.djamware.com/post/58eba06380aca72673af8500/node-express-mongoose-and-passportjs-rest-api-authentication
