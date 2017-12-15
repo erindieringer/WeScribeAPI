@@ -3,40 +3,14 @@ var Usage = require('../models/usage');
 // Routes and methods
 
 exports.init = function(app) {
-	app.get("/usage/:user/:month")
+	app.get("/usage/:user/:month");
 	app.get("/usage/", getUsage);
 	app.post("/usage/:start", createUsage);
-	app.put("/usage/:id/:end", addEnd)
+	app.put("/usage/:id/:end", addEnd);
 	app.delete("/usage/:id", deleteUsage);
-	app.delete("/usage", deleteAllUsage)
-	
+	app.delete("/usage", deleteAllUsage);
 }
-
-// aggregateUsage = function(req, res){
-// 	// get past month usage for specific user
-// 	Usage.find({
-// 		user: req.params.user,
-// 		start: {
-// 			$gte: Date.today().add(-30).days(),
-//       		$lte: Date.today()
-// 		}
-// 	},
-// 		function(err, usage){
-// 			res.send(calculateHours)
-// 		}
-// 	);
-// }
-
-// // when passed array of usage for a month, calculates hours for that user
-
-// calculateHours = function(usage){
-// 	var totalHours = 0;
-// 	for(var i=0; i< usage.length: i++){
-// 		totalHours += usage[i].totalTime;
-// 	}
-// 	return totalHours
-// }
-
+// Gets all usage
 getUsage = function(req, res){
 	Usage.find({}, function(err, service) {
 	    if (err)
@@ -59,7 +33,7 @@ createUsage = function(req, res){
 	});
 }
 
-//Based off of the 
+// Adds end time to usage instance
 addEnd = function(req, res){
 	Usage.findById(req.params.id, function(err, usage){
 		if (err) 
@@ -73,6 +47,7 @@ addEnd = function(req, res){
 	});
 }
 
+//Deletes usage instance
 deleteUsage = function(req, res){
 	Usage.remove({_id: req.params.id}, function(err, usage) {
     if (err)
@@ -81,6 +56,7 @@ deleteUsage = function(req, res){
   }); 
 }
 
+// Deletes all usage (for testing purposes)
 deleteAllUsage = function(req, res){
 	Usage.remove({}, function(err, usage) {
     	if (err)

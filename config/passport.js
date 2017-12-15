@@ -5,6 +5,7 @@ var JwtStrategy = require('passport-jwt').Strategy,
 var User = require('../models/users');
 var config = require('../config/database'); // get db config file
 
+// Authentication
 module.exports = function(passport) {
   var opts = {};
   opts.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');

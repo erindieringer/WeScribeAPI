@@ -16,6 +16,7 @@ var UserSchema   = new Schema({
 });
 
 // Code below taken from https://www.djamware.com/post/58eba06380aca72673af8500/node-express-mongoose-and-passportjs-rest-api-authentication
+// Encrypts password into hash beofre 
 UserSchema.pre('save', function (next) {
     var user = this;
     if (this.isModified('password') || this.isNew) {
@@ -36,6 +37,7 @@ UserSchema.pre('save', function (next) {
     }
 });
 
+// Compare password hashes
 UserSchema.methods.comparePassword = function (passw, cb) {
     bcrypt.compare(passw, this.password, function (err, isMatch) {
         if (err) {

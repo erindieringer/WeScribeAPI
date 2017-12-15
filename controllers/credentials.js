@@ -1,7 +1,6 @@
 var Credentials = require('../models/credentials');
 
-
-// Routes and methods
+// Credentials store seperately for secruity purposes
 
 exports.init = function(app) {
 	app.get("/credentials/:id", getCredentials);
@@ -10,6 +9,7 @@ exports.init = function(app) {
 
 }
 
+// Get credentials by ID
 getCredentials = function(req,res){
 	Credentials.find({_id: req.params.id}, function(err, cred) {
 	   if (err)
@@ -19,6 +19,7 @@ getCredentials = function(req,res){
 	  });
 }
 
+// Create new credentials instance
 createCredentials = function(req, res){
 	var cred = new Credentials ({
 		username: req.params.username,
@@ -32,6 +33,7 @@ createCredentials = function(req, res){
 	});
 }
 
+// Delete instance of credentials
 deleteCredentials = function(req, res) {
 	Credntials.remove({_id: req.params.id}, function(err, cred) {
     if (err)

@@ -3,7 +3,6 @@ var User = require('../models/users');
 
 // Routes and methods
 exports.init = function(app) {
-	app.get("/users/", getAllUsers)
 	app.get("/users/:id", getUserByID);
 	app.post("/users/:fname/:lname/:username/:password/:email", postUser);
 	app.put("/users/:id/:group", updateGroup);
@@ -11,15 +10,7 @@ exports.init = function(app) {
 
 }
 
-getAllUsers = function(req,res){
-	User.find({}, function(err, service) {
-	    if (err)
-	     	res.send(err);
-	  	else 
-	    	res.json(service);
-	});
-}
-
+// Gets user document by ID
 getUserByID = function(req, res){
 	User.find({_id: req.params.id}, function(err, user) {
 	    if (err)
@@ -29,6 +20,7 @@ getUserByID = function(req, res){
 	  });
 }
 
+// Creates new user based on params passed
 postUser = function(req, res){
 	console.log(req.params);
 	var user = new User ({
@@ -47,6 +39,7 @@ postUser = function(req, res){
 
 }
 
+// Deletes user by ID
 deleteUser = function(req, res){
 	User.remove({_id: req.params.id}, function(err, user) {
     if (err)
@@ -55,6 +48,7 @@ deleteUser = function(req, res){
   }); 
 }
 
+// Ads a group to the user
 updateGroup = function(req, res){
 	User.findById(req.params.id, function(err, user){
 		if (err) 

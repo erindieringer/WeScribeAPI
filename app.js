@@ -8,10 +8,10 @@ var passport = require('passport');
 var config = require('./config/database');
 var authentication = require('./controllers/authentication');
 
-
+// Accesses local databases
 mongoose.connect(config.database);
-// use it before all route definitions
-// app.use(cors({origin: 'http://localhost:50000'}));
+
+// Allow cross origin access from local db when extension call it
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');

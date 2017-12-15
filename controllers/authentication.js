@@ -11,7 +11,7 @@ var jwt = require('jsonwebtoken');
 var router = express.Router();
 var User = require("../models/users.js");
 
-
+// Signup a new user, create new user
 router.post('/signup/:username/:password', function(req, res) {
   if (!req.params.username || !req.params.password) {
     res.json({success: false, msg: 'Please pass username and password.'});
@@ -31,6 +31,7 @@ router.post('/signup/:username/:password', function(req, res) {
   }
 });
 
+// Sign in a user 
 router.post('/signin/:username/:password', function(req, res) {
   User.findOne({
     username: req.params.username
@@ -55,6 +56,7 @@ router.post('/signin/:username/:password', function(req, res) {
   });
 });
 
+// Gets token for authorized login
 getToken = function (headers) {
   if (headers && headers.authorization) {
     var parted = headers.authorization.split(' ');
