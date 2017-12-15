@@ -38,7 +38,7 @@ addEnd = function(req, res){
 	Usage.findById(req.params.id, function(err, usage){
 		if (err) 
 			return handleError(err);
-		var hours = Math.abs(usage.start - req.params.end) / 36e5;
+		var hours = Math.abs(usage.start - req.params.end) / 36e5; // calculates total time in session
 		usage.set({ end: req.params.end, totalTime: hours });
  		usage.save(function (err, upatedUsage) {
     		if (err) return handleError(err);
